@@ -5,17 +5,18 @@
 <a href="/users/logout" class="btn btn-secondary">Logout</a>
 
 <h1 class="mb-4">Blog Article</h1>
-<a href="/profile" class="btn btn-success">Profile</a>
-<a href="/search" class="btn btn-dark">Search</a>
+<a href="/dashboard" class="btn btn-primary">Home</a>
+<a href="/articles/new" class="btn btn-success">New Article</a>
 
 <% articles.forEach(article =>{ %>
+    <% if(article.userId === userId) {%> 
     <div class="card mt-4">
         <div class="card-body">
             <div class="img">
                 <img src="/person2.jpg" class="profile" alt="profile img">
                 <div class="text">
-                    <h2 class="card-subtitle mb-2"><%= article.name %></h2>
-                    <h6 class="card-subtitle text-muted mb-2"><%= article.userId %></h6>
+                <h2 class="card-subtitle mb-2"><%= article.name %></h2>
+                <h6 class="card-subtitle text-muted mb-2"><%= article.userId %></h6>
                 </div>
             </div>
             <u>
@@ -25,12 +26,17 @@
                 <%= article.createdAt.toLocaleDateString() %>
             </div>
             <div class="mt-2 mb-2">
-                <img src="/img7.jpg" class="img2" width="300" alt="image">
+                <img src="/img7.jpg" width="300" class="img2" alt="image">
             </div>
             <div class="card-text mb-2"><strong><%= article.name %></strong> : <%= article.description %></div>
             <a href="/articles/<%= article.slug %>" class="btn btn-primary">Read More</a>
+            <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+            <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
         </div>
     </div>
-    <% }) %>
+    <% } %> 
+<% }) %>
 
     

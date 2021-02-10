@@ -1,0 +1,44 @@
+<form action="/search" method="POST">
+    <label for="userId">Search</label>
+<input
+    type="userId"
+    id="userId"
+    name="userId"
+    class="form-control"
+    placeholder="Enter User Id or Name"
+    required
+    value="<%= typeof userId != 'undefined' ? userId : '' %>"
+/>
+<h6 class="text-muted grey">use # to search user with id</h6>
+<button class="btn btn-info mt-2 mb-4" type="submit">Search</button>
+</form>
+
+<% users.forEach(user => { %> 
+        <% if(userId != null ) { %> 
+            <% var index = userId.indexOf('#'); %>
+            <% if(index == 0) { %> 
+                <% var userIdModified = userId.slice(1,userId.length);%>
+                <% if( user.userId == userIdModified ) { %>
+                    <a href="/find/<%= user.id %> ">
+                        <h4><%= user.userId %> </h4>
+                        <h6><%= user.name %></h6>
+                        <br><br>
+                    </a>
+                <% } %> 
+            <% } else { %>
+                <% if( user.name == userId ) { %>
+                    <a href="/find/<%= user.id %> ">
+                        <h4><%= user.userId %> </h4>
+                        <h6><%= user.name %></h6>
+                        <br><br>
+                    </a>
+                <% } %> 
+            <% } %> 
+        <% } else { %>
+        <a href="/find/<%= user.id %> ">
+            <h4><%= user.userId %> </h4>
+            <h6><%= user.name %> </h6>
+            <br><br>
+        </a>
+        <% } %> 
+<% }) %>    

@@ -1,0 +1,58 @@
+<style>
+    .outer{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .line{
+        background-color: black;
+        width: 80%;
+        margin-top: 50px;
+        height: 6px;
+        border-radius: 50%;
+    }
+    .img{
+        display: flex;
+        flex-direction: row;
+        border-radius: 50%;
+        align-items: center;
+    }
+    .profile{
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        border: 2px solid black;
+    }
+    .img2{
+        object-fit: contain;
+        min-width: 100px;
+        max-width: 500px;
+    }
+</style>
+
+<div class="container">
+    <div class="img">
+        <img src="/person2.jpg" class="profile" alt="profile img">
+        <div class="text">
+            <h1 class="mb-1"><%= article.name %></h1>
+            <h6 class="text-muted"><%= article.userId %> </h6>
+        </div>
+    </div>
+    <u>
+        <h3 class="mb-1"><%=article.title%></h3>
+    </u>
+    <div class="text-muted"><%= article.createdAt.toLocaleDateString() %></div><br>
+    <div class="card mt-2 mb-2 img2">
+        <img src="/img7.jpg" alt="image">
+    </div>
+    <a href="/dashboard" class="btn btn-secondary">All Article</a>
+    <a href="/articles/edit/<%= article.id%>" class="btn btn-info">Edit</a> <br><br><br>
+    <div>
+        <div class="mb-1"><b><%= article.name %></b> : <%= article.description %> </div>
+        
+        <i><%- article.sanitizedHtml %></i>
+    </div>
+ </div>
+ <div class="outer">
+  <div class="line"></div>
+</div>

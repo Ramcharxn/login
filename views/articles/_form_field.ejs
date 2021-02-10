@@ -1,0 +1,23 @@
+<div class="form-group">
+    <label for="title">Title</label>
+    <input required type="text" id="title" name="title" class="form-control" value="<%= article.title %>"><br>
+</div>
+<div class="form-group">
+    <label for="name">Name</label>
+    <input disabled required type="text" id="name" name="name" class="form-control" value="<%= name %>"><br>
+</div>
+<div class="form-group">
+    <label for="userId">userId</label>
+    <input disabled required type="text" id="userId" name="userId" class="form-control" value="<%= userId %>"><br>
+</div>
+<div class="form-group">
+    <label for="description">Description</label>
+    <textarea required rows="2" cols="30" type="text" id="description" name="description" class="form-control"><%= article.description %></textarea><br>
+</div>
+<div class="form-group">
+    <label for="markdown">Markdown</label>
+    <textarea rows="5" cols="30" type="text" id="markdown" name="markdown" class="form-control"><%= article.markdown %></textarea><br><br>
+</div>
+
+<a href="/dashboard" class="btn btn-secondary">Cancel</a>
+<button type="submit" class="btn btn-primary">Save</button>

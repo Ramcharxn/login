@@ -4,6 +4,10 @@ const mongoose = require('mongoose')
 const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
+const articleRouter = require('./routes/articles')
+const Article = require('./models/article')
+const methodOverride = require('method-override')
+const path = require('path')
 
 const app = express();
 
@@ -12,6 +16,7 @@ require('./config/passport')(passport)
 
 //bodyParse
 app.use(express.urlencoded({extended:false}))
+app.use(methodOverride('_method'))
 
 // Express Session
 app.use(session({
@@ -35,6 +40,8 @@ app.use((req,res,next)=>{
     next()
 })
 
+app.use(express.static(path.join(__dirname,'public')))
+
 // DB Config
 const db = require('./config/keys').mongoURI;
 
@@ -54,7 +61,8 @@ app.set('view engine','ejs')
 //Routes
 app.use('/',require('./routes/index'))
 app.use('/users',require('./routes/user'))
+app.use('/articles',articleRouter)
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 
 app.listen(PORT,console.log(PORT))
